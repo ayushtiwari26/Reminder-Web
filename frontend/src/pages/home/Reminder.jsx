@@ -263,7 +263,7 @@ export default function Reminder() {
         isEdit={isEdit}
         setIsEdit={setIsEdit}
       />
-      <section className="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5">
+      <section className="bg-gray-50 h-screen dark:bg-gray-900 py-3 sm:py-5">
         <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
           <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div className="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
@@ -275,10 +275,19 @@ export default function Reminder() {
                 </h3>
                 <h3>
                   <span className="text-sm font-medium text-gray-900 dark:text-white">
-                    {new Date().toString()}
+                    {new Date().toLocaleString([], {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                    })}
                   </span>
                 </h3>
-                <h3>{JSON.parse(localStorage.getItem("user")).email}</h3>
+                <h3 className="text-lg text-red-500">
+                  {JSON.parse(localStorage.getItem("user")).email}
+                </h3>
               </div>
               <div className="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
                 <button
@@ -318,7 +327,7 @@ export default function Reminder() {
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
-                    <th scope="col" className="p-4">
+                    {/* <th scope="col" className="p-4">
                       <div className="flex items-center">
                         <input
                           id="checkbox-all"
@@ -329,7 +338,7 @@ export default function Reminder() {
                           checkbox
                         </label>
                       </div>
-                    </th>
+                    </th> */}
                     <th scope="col" className="px-4 py-3">
                       Title
                     </th>
@@ -350,7 +359,7 @@ export default function Reminder() {
                 <tbody>
                   {reminders.map((reminder) => (
                     <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                      <td className="w-4 px-4 py-3">
+                      {/* <td className="w-4 px-4 py-3">
                         <div className="flex items-center">
                           <input
                             id="checkbox-table-search-1"
@@ -364,7 +373,7 @@ export default function Reminder() {
                             checkbox
                           </label>
                         </div>
-                      </td>
+                      </td> */}
                       <th
                         scope="row"
                         className="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -380,7 +389,14 @@ export default function Reminder() {
                       </td>
 
                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {new Date(reminder.date).toString()}
+                        {new Date().toLocaleString([], {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          second: "2-digit",
+                        })}
                       </td>
                       <td className="px-4 py-2">
                         <a
